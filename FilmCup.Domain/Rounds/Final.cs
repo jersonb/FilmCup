@@ -1,10 +1,11 @@
-﻿using FilmCup.Domain.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace FilmCup.Domain.Rounds
 {
+    using Models;
+
     public class Final : Round
     {
 

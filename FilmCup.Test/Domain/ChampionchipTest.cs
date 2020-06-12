@@ -1,9 +1,9 @@
-﻿using FilmCup.Domain;
-using FilmCup.Domain.Models;
-using FilmCup.Domain.Rounds;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xunit;
+using FilmCup.Domain;
+using FilmCup.Domain.Models;
+using FilmCup.Domain.Rounds;
 
 namespace FilmCup.Test.Domain
 {

@@ -2,6 +2,7 @@
 using FilmCup.Proxy;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace FilmCup.Test
@@ -12,7 +13,7 @@ namespace FilmCup.Test
         {
             var list = new List<Film>();
 
-            var filmViewObjects = FontDataFilmProxy.FontData("http://copafilmes.azurewebsites.net").GetAll().Result;
+            var filmViewObjects =  FontDataFilmProxy.FontData("http://copafilmes.azurewebsites.net").GetAll().Result;
 
             filmViewObjects.ToList().ForEach(vo => list.Add(Film.GetInstance(id: vo.Id, vo.Title, vo.Year, vo.Score)));
 
