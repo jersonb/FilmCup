@@ -1,5 +1,5 @@
-﻿using FilmCup.Domain.Rounds;
-using FilmCup.Domain.Models;
+﻿using FilmCup.Domain.Models;
+using FilmCup.Domain.Rounds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +18,13 @@ namespace FilmCup.Test
                     Film.GetInstance("p1", "Pânico 1", 1990, 7)
                 };
 
-                 new Final().SetRound(films);
+                new Final().SetRound(films);
 
                 Assert.True(false);
-
             }
             catch (Exception ex)
             {
-                Assert.Equal("Quantidade de filmes inválida para rodada final, são necessários 2 filmes", ex.Message);
+                Assert.Equal("Quantidade de filmes inválida para esta rodada, são necessários 2 filmes", ex.Message);
             }
         }
 
@@ -39,17 +38,16 @@ namespace FilmCup.Test
                     Film.GetInstance("p2", "Pânico 2", 1992, 6),
                     Film.GetInstance("p3", "Pânico 3", 1994, 5)
                 };
-                
+
                 new Final().SetRound(films);
 
                 Assert.True(false);
             }
             catch (Exception ex)
             {
-                Assert.Equal("Quantidade de filmes inválida para rodada final, são necessários 2 filmes", ex.Message);
+                Assert.Equal("Quantidade de filmes inválida para esta rodada, são necessários 2 filmes", ex.Message);
             }
         }
-
 
         [Fact]
         public void InstanceFilmsTest()
@@ -57,7 +55,6 @@ namespace FilmCup.Test
             try
             {
                 var films = new List<Film> {
-
                     Film.GetInstance("p1", "Pânico 1", 1990, 7),
                     Film.GetInstance("p2", "Pânico 2", 1992, 6)
                 };
@@ -80,13 +77,11 @@ namespace FilmCup.Test
             try
             {
                 var films1 = new List<Film> {
-
                     Film.GetInstance("p2", "Pânico 2", 1992, 2),
                     Film.GetInstance("p1", "Pânico 1", 1990, 1)
                 };
 
                 var films2 = new List<Film> {
-
                     Film.GetInstance("p2", "Pânico 2", 1992, 2),
                     Film.GetInstance("p1", "Pânico 1", 1990, 1)
                 };
@@ -100,8 +95,8 @@ namespace FilmCup.Test
                 var first1 = final1.GetWinners().ElementAt(0);
                 var first2 = final2.GetWinners().ElementAt(0);
 
-                Assert.Equal(first1.Id, first2.Id);
-                Assert.Equal("p2", first1.Id);
+                Assert.Equal(first1.Id.Value, first2.Id.Value);
+                Assert.Equal("p2", first1.Id.Value);
             }
             catch (Exception ex)
             {
@@ -115,13 +110,11 @@ namespace FilmCup.Test
             try
             {
                 var films1 = new List<Film> {
-
                     Film.GetInstance("p2", "Pânico 2", 1992, 1),
                     Film.GetInstance("p1", "Pânico 1", 1990, 1)
                 };
 
                 var films2 = new List<Film> {
-
                     Film.GetInstance("p2", "Pânico 2", 1992, 1),
                     Film.GetInstance("p1", "Pânico 1", 1990, 1)
                 };
@@ -131,18 +124,17 @@ namespace FilmCup.Test
 
                 var final2 = new Final();
                 final2.SetRound(films2);
-                
+
                 var first1 = final1.GetWinners().ElementAt(0);
                 var first2 = final2.GetWinners().ElementAt(0);
 
-                Assert.Equal(first1.Id, first2.Id);
-                Assert.Equal("p1", first1.Id);
+                Assert.Equal(first1.Id.Value, first2.Id.Value);
+                Assert.Equal("p1", first1.Id.Value);
             }
             catch (Exception ex)
             {
                 Assert.Null(ex);
             }
         }
-
     }
 }

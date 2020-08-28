@@ -13,13 +13,12 @@ namespace FilmCup.Test
         {
             var list = new List<Film>();
 
-            var filmViewObjects =  FontDataFilmProxy.FontData("http://copafilmes.azurewebsites.net").GetAll().Result;
+            var filmViewObjects = FontDataFilmProxy.FontData("http://copafilmes.azurewebsites.net").GetAll().Result;
 
             filmViewObjects.ToList().ForEach(vo => list.Add(Film.GetInstance(id: vo.Id, vo.Title, vo.Year, vo.Score)));
 
             return list;
         }
-
 
         [Fact]
         public static void GetAllFilmsTest()
@@ -28,12 +27,10 @@ namespace FilmCup.Test
         }
 
         public IEnumerable<Film> FirstEigth
-            => GetAllFilms().Take(8).OrderBy(x => x.Title);
-
+            => GetAllFilms().Take(8).OrderBy(x => x.Title.Value);
 
         public IEnumerable<string> AllIds
-           => GetAllFilms().Select(film => film.Id);
-
+           => GetAllFilms().Select(film => film.Id.ToString());
 
         private IEnumerable<string> FirstEightFilmNames
             => new List<string>
@@ -47,7 +44,6 @@ namespace FilmCup.Test
                 ,"Han Solo: Uma História Star Wars"
                 ,"Thor: Ragnarok"
             };
-
 
         private IEnumerable<string> FirstEightFilmNamesInOrder
             => new List<string>
@@ -63,28 +59,24 @@ namespace FilmCup.Test
             };
 
         public IEnumerable<string> GenerateAllIds
-         => GetAllFilms().Select(film => film.Id);
+         => GetAllFilms().Select(film => film.Id.ToString());
 
         [Fact]
         public void FirstEightTest()
         {
-            var nameFilms = GetAllFilms().Take(8).Select(film => film.Title);
+            var nameFilms = GetAllFilms().Take(8).Select(film => film.Title.ToString());
 
             Assert.True(FirstEightFilmNames.SequenceEqual(nameFilms));
             Assert.False(FirstEightFilmNamesInOrder.SequenceEqual(nameFilms));
         }
 
-
         [Fact]
         public void OrderTest()
         {
-            var listflmOrderByName = FirstEigth.Select(film => film.Title);
+            var listflmOrderByName = FirstEigth.Select(film => film.Title.ToString());
 
             Assert.True(FirstEightFilmNamesInOrder.SequenceEqual(listflmOrderByName));
             Assert.False(FirstEightFilmNames.SequenceEqual(listflmOrderByName));
         }
-
-
-
     }
 }

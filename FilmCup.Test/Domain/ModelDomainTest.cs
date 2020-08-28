@@ -15,9 +15,7 @@ namespace FilmCup.Test
         {
             try
             {
-                var film = Film.GetInstance(id, title, year, score);
-
-                Assert.Null(film);
+                _ = Film.GetInstance(id, title, year, score);
             }
             catch (Exception ex)
             {
@@ -25,24 +23,19 @@ namespace FilmCup.Test
             }
         }
 
-        
         [Theory]
-        [InlineData("a", "b", 1801, 1)]
+        [InlineData("a", "bc", 1801, 1)]
         [InlineData("avdqnf", "a volta dos que não foram", 2020, 10)]
         public void FilmValidInstanceTest(string id, string title, int year, decimal score)
         {
             try
             {
-                var film = Film.GetInstance(id, title, year, score);
-
-                Assert.NotNull(film);
+                _ = Film.GetInstance(id, title, year, score);
             }
             catch (Exception ex)
             {
                 Assert.Null(ex);
             }
         }
-
-
     }
 }

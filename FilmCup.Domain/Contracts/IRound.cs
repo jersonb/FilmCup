@@ -9,6 +9,5 @@ namespace FilmCup.Domain.Contracts
         IEnumerable<Film> GetWinners();
 
         void SetRound(IEnumerable<Film> films);
-
     }
 }

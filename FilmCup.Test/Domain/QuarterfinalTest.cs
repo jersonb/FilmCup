@@ -1,5 +1,5 @@
-﻿using FilmCup.Domain.Rounds;
-using FilmCup.Domain.Models;
+﻿using FilmCup.Domain.Models;
+using FilmCup.Domain.Rounds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,9 +30,8 @@ namespace FilmCup.Test
             }
             catch (Exception ex)
             {
-                Assert.Equal("Quantidade de filmes inválida para quartas de final, são necessários 8 filmes", ex.Message);
+                Assert.Equal("Quantidade de filmes inválida para esta rodada, são necessários 8 filmes", ex.Message);
             }
-
         }
 
         [Fact]
@@ -58,9 +57,8 @@ namespace FilmCup.Test
             }
             catch (Exception ex)
             {
-                Assert.Equal("Quantidade de filmes inválida para quartas de final, são necessários 8 filmes", ex.Message);
+                Assert.Equal("Quantidade de filmes inválida para esta rodada, são necessários 8 filmes", ex.Message);
             }
-
         }
 
         [Fact]
@@ -86,20 +84,15 @@ namespace FilmCup.Test
 
                 Assert.True(winners.Count() == 4);
 
-                Assert.Contains(winners, x => x.Id.Equals("p1"));
-                Assert.Contains(winners, x => x.Id.Equals("p7"));
-                Assert.Contains(winners, x => x.Id.Equals("p3"));
-                Assert.Contains(winners, x => x.Id.Equals("p4"));
-
+                Assert.Contains(winners, x => x.Id.Value.Equals("p1"));
+                Assert.Contains(winners, x => x.Id.Value.Equals("p7"));
+                Assert.Contains(winners, x => x.Id.Value.Equals("p3"));
+                Assert.Contains(winners, x => x.Id.Value.Equals("p4"));
             }
             catch (Exception ex)
             {
                 Assert.Null(ex);
             }
-
         }
-
-
-
     }
 }

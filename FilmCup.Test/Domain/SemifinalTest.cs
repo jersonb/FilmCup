@@ -23,12 +23,10 @@ namespace FilmCup.Test
                 new Semifinal().SetRound(films);
 
                 Assert.True(false);
-
             }
             catch (Exception ex)
             {
-
-                Assert.Equal("Quantidade de filmes inválida para rodada semifinal, são necessários 4 filmes", ex.Message);
+                Assert.Equal("Quantidade de filmes inválida para esta rodada, são necessários 4 filmes", ex.Message);
             }
         }
 
@@ -48,12 +46,10 @@ namespace FilmCup.Test
                 new Semifinal().SetRound(films);
 
                 Assert.True(false);
-
             }
             catch (Exception ex)
             {
-
-                Assert.Equal("Quantidade de filmes inválida para rodada semifinal, são necessários 4 filmes", ex.Message);
+                Assert.Equal("Quantidade de filmes inválida para esta rodada, são necessários 4 filmes", ex.Message);
             }
         }
 
@@ -76,14 +72,13 @@ namespace FilmCup.Test
                 var winners = semifinal.GetWinners();
 
                 Assert.True(winners.Count() == 2);
-                Assert.Contains(winners, x => x.Id.Equals("p1"));
-                Assert.Contains(winners, x => x.Id.Equals("p4"));
+                Assert.Contains(winners, x => x.Id.Value.Equals("p1"));
+                Assert.Contains(winners, x => x.Id.Value.Equals("p4"));
             }
             catch (Exception ex)
             {
                 Assert.Null(ex);
             }
         }
-
     }
 }

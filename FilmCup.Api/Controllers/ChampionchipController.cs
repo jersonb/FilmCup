@@ -1,16 +1,15 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FilmCup.Api.Requests;
+using FilmCup.Api.Results;
+using FilmCup.Domain;
+using FilmCup.Domain.Models;
+using FilmCup.Proxy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
 
 namespace FilmCup.Api.Controllers
 {
-    using Domain;
-    using Domain.Models;
-    using Proxy;
-    using Requests;
-    using Results;
-
     [ApiController]
     [Route("championchip")]
     public class ChampionchipController : ControllerBase
@@ -34,10 +33,9 @@ namespace FilmCup.Api.Controllers
 
             var films = filmsViewObject.Select(f => Film.GetInstance(f.Id, f.Title, f.Year, f.Score));
 
-            var (First, Second) = Championchip.Podium(films);
+            var (First, Second) = ChampionchipFactory.Podium(films);
 
             return Ok(new Result(StatusCodes.Status201Created, "Podium, primeiro e segundo colocado.", new { first = First.Title, second = Second.Title }));
-
         }
     }
 }

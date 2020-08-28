@@ -16,13 +16,11 @@ namespace FilmCup.Test.Domain
             _films = ProxyTest.GetAllFilms();
         }
 
-
         [Theory]
         [InlineData("Vingadores: Guerra Infinita", "Os Incríveis 2")]
         [InlineData("Hereditário", "Upgrade")]
         public void ChampionNormalCaseTest(string name1, string name2)
         {
-
             var list1 = new List<Film>
             {
                 _films.First(film => film.Title.Equals(name1)),
@@ -43,7 +41,6 @@ namespace FilmCup.Test.Domain
             final2.SetRound(list2);
             var championRound2 = final2.GetWinners();
 
-
             Assert.True(championRound1.ElementAt(0).Title.Equals(name1));
             Assert.True(championRound2.ElementAt(0).Title.Equals(name1));
         }
@@ -51,15 +48,14 @@ namespace FilmCup.Test.Domain
         [Fact]
         public void AllOpertationTest()
         {
-            _films = Championchip.Champions(_films.Take(8));
+            _films = ChampionchipFactory.Champions(_films.Take(8));
 
             Assert.Equal(2, _films.Count());
 
             var (film1, film2) = (_films.ElementAt(0), _films.ElementAt(1));
 
-            Assert.Equal("Vingadores: Guerra Infinita", film1.Title);
-            Assert.Equal("Os Incríveis 2", film2.Title);
+            Assert.True(film1.Title.Equals("Vingadores: Guerra Infinita"));
+            Assert.True(film2.Title.Equals("Os Incríveis 2"));
         }
-
     }
 }
